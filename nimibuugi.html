@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nimivalinnat</title>
+    <script type="text/javascript">
+
+
+      var shuffle = function (array) {
+        var currentIndex = array.length;
+        var temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      };
+
+      var vaihtoehdot = shuffle([
+        "Aamuruuhka",
+        "Arkipäivän ääniraita",
+        "Asiakasseteli",
+        "Ässäarpa ja santsikuppi",
+        "Bussipysäkin rytmi",
+        "Ei uusia viestejä",
+        "Huutolaiset ketoosissa",
+        "Ilmastonmuutosvastarinta",
+        "Jake",
+        "Kansan oikeustaju",
+        "Kapitaatiokorvaus",
+        "Karenssipäivä",
+        "Karenssista ketoosiin",
+        "Kärkihanke",
+        "Katto korkealla ja elementtiseinät",
+        "Katto korkealla ja falskaavat seinät",
+        "Kauneimmat elementtitalot",
+        "Kävisit enemmän ulkona",
+        "Ketoosi tuulipuvussa",
+        "Kilpailukykysopimus",
+        "korpiroju",
+        "Lähiön lähettiläs",
+        "Lepakon torpparit",
+        "Lepikon torpparit",
+        "Lottokuponki lumihangessa",
+        "Maakuntauudistus",
+        "Mä en voi soittaa tätä ilman sua",
+        "Marginaalihanke",
+        "Mitä tulee feminismin jälkeen",
+        "Niitä tavallisia tarinoita",
+        "Norjalainen tuulipuku",
+        "Nyt on paremmin",
+        "Peiton alta",
+        "Pienen asiakkaan puolesta",
+        "Pistesijoja ja lohdutuspalkintoja",
+        "Ratkaisujen Suomi",
+        "Tanssimusiikkia",
+        "Tekijöitä ja kokijoita",
+        "Työttömien kyselytunti",
+        "Unelmien sepeli",
+        "Vakuutuskuoressa",
+        "Vaurauden takana",
+        "Yksi"
+      ]);
+
+    remove = function(id) {
+      if (vaihtoehdot.length <= 1) {
+        return;
+      }
+      var element = document.getElementById(id);
+      var index = vaihtoehdot.indexOf(element.innerText);
+      if (index > -1) {
+        vaihtoehdot.splice(index, 1);
+      }
+      document.getElementById(id).innerText = vaihtoehdot[0] || "-";
+      if (document.getElementById("eka").innerText === document.getElementById("toka").innerText) {
+        document.getElementById(id).innerText = vaihtoehdot[1] || "-";
+      }
+    }
+    </script>
+
+    <style>
+        span { font-weight: bold; padding: 10px; position: relative; display: block; width: 400px; background: lightgoldenrodyellow; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+  <p>Klikkaa vaihtoehtoa, jonka haluat säilyttää.</p>
+
+  <div>
+      <span id="eka" onclick="remove('toka');"></span>
+      vs
+      <span id="toka" onclick="remove('eka');"></span>
+  </div>
+
+</body>
+<footer>
+    <script type="text/javascript">
+      document.getElementById("eka").innerText = vaihtoehdot[0];
+      document.getElementById("toka").innerText = vaihtoehdot[1];
+    </script>
+</footer>
+</html>
